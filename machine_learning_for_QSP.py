@@ -106,6 +106,8 @@ stats= list()
 imps= np.empty((12,1000))
 for i in range(n_iterations):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25)
+    X_train = sc.fit_transform(X_train)
+    X_test = sc.transform(X_test)
     classifier.fit(X_train, y_train)
     y_pred= classifier.predict(X_test)
     y_prob=classifier.predict_proba(X_test)
